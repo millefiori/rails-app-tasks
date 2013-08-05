@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["toshi@millefiori.co.jp"]
   spec.description   = %q{ rake app:init }
   spec.summary       = %q{ rake app:init }
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/millefiori/rails-app-tasks"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

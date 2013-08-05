@@ -1,4 +1,5 @@
 require "rails/app/tasks/version"
+require "rails/app/railtie"
 
 module Rails
   module App

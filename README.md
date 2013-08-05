@@ -1,12 +1,46 @@
 # Rails::App::Tasks
 
-TODO: Write a gem description
+Convinient rake tasks for development.
+
+## Usage
+
+Application initialize task
+
+    rake app:init #=> rake db:create db:migrate db:seed db:test:prepare
+
+Reset database task
+
+    rake app:reset #=> rake db:reset db:seed db:test:prepare
+
+Or
+
+    rake db:drop app:init
+
+You can extend to execute any tasks before/after this task.
+
+    namespace :app do
+      task :before_init do
+        puts "before init"
+      end
+
+      task :after_init do
+        puts "after init"
+      end
+
+      Rake::Task[:init].enhance [:before_init]
+
+      Rake::Task[:init].enhance do
+        Rake::Task["app:after_init"].invoke
+      end
+    end
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'rails-app-tasks'
+    group :development do
+      gem 'rails-app-tasks'
+    end
 
 And then execute:
 
@@ -15,10 +49,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install rails-app-tasks
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
