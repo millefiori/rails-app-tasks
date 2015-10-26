@@ -1,9 +1,14 @@
 namespace :app do
-  desc "initialize database"
-  task :init => "db:load_config" do
-    [ "db:create", "db:migrate", "db:seed", "db:test:prepare" ].each do |x|
+  desc "setup database"
+  task :setup_db => "db:load_config" do
+    [ "db:create", "db:migrate", "db:seed" ].each do |x|
       Rake::Task[ x ].invoke
     end
+  end
+
+  desc 'initialize database'
+  task :init do
+    Rake::Task['app:setup_db'].invoke
   end
 
   desc "reset database"
